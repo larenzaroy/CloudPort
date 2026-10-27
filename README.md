@@ -50,7 +50,7 @@ A complete, production-grade, secure, and fully responsive serverless web applic
 
 | Component | Status | Production Endpoint / URL |
 | :--- | :--- | :--- |
-| **Frontend Static Website** | Deployed | `https://storage.googleapis.com/YOUR_BUCKET_NAME/index.html` |
+| **Frontend Static Website** | Deployed | `https://cloudport-frontend.vercel.app` |
 | **Cloud Function (HTTP Backend)** | Deployed | `https://cloud-port-hsla-eta.vercel.app` |
 | **Cloud Firestore Database** | Native Mode | `(default)` in region `us-central1` |
 | **Source Repository** | GitHub | `https://github.com/larenzaroy/CloudPort` |
