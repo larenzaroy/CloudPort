@@ -1,8 +1,8 @@
 """
-CloudPort — Google Cloud Function Backend (Python)
+CloudPort — Google Cloud Function & Vercel Backend (Python)
 HTTP Triggered Serverless Function with Cloud Firestore Native Integration
 
-Target: cloudport_registration
+Target: cloudport_registration / app
 Runtime: Python 3.10 / 3.11 / 3.12
 Supports: Google Cloud Functions, Local Development, and Vercel Serverless
 
@@ -15,7 +15,14 @@ import json
 import logging
 import uuid
 import time
-from typing import Dict, Any, Tuple, List
+from typing import Dict, Any, List
+
+from flask import Flask, request
+
+# Top-level Flask instance for Vercel CLI static detection
+app = Flask(__name__)
+application = app
+
 try:
     import functions_framework
 except ImportError:
@@ -159,7 +166,7 @@ def validate_registration_payload(data: Any) -> List[str]:
     return errors
 
 @functions_framework.http
-def cloudport_registration(request):
+def cloudport_registration(req):
     """
     HTTP Cloud Function entry point for CloudPort registration.
     Handles OPTIONS preflight, validates JSON payload, and persists to Firestore.
@@ -167,11 +174,11 @@ def cloudport_registration(request):
     cors_headers = get_cors_headers()
 
     # 1. Handle OPTIONS Preflight
-    if request.method == "OPTIONS":
+    if req.method == "OPTIONS":
         return ("", 204, cors_headers)
 
     # Health check for GET
-    if request.method == "GET":
+    if req.method == "GET":
         response_body = json.dumps({
             "success": True,
             "message": "CloudPort Registration API is running. Submit POST requests to register."
@@ -180,17 +187,17 @@ def cloudport_registration(request):
         return (response_body, 200, headers)
 
     # 2. Reject Non-POST Methods (HTTP 405)
-    if request.method != "POST":
+    if req.method != "POST":
         response_body = json.dumps({
             "success": False,
             "error": "Method Not Allowed",
-            "message": f"HTTP method {request.method} is not supported. Use POST."
+            "message": f"HTTP method {req.method} is not supported. Use POST."
         })
         headers = {**cors_headers, "Content-Type": "application/json"}
         return (response_body, 405, headers)
 
     # 3. Validate Content-Type (HTTP 415)
-    content_type = request.headers.get("content-type", "")
+    content_type = req.headers.get("content-type", "")
     if "application/json" not in content_type:
         response_body = json.dumps({
             "success": False,
@@ -202,7 +209,7 @@ def cloudport_registration(request):
 
     # Parse JSON body
     try:
-        request_json = request.get_json(silent=True)
+        request_json = req.get_json(silent=True)
     except Exception:
         request_json = None
 
@@ -278,24 +285,9 @@ def cloudport_registration(request):
 
 
 # ------------------------------------------------------------------------------
-# Vercel Serverless WSGI Entry Point (exports 'app', 'application', and 'handler')
+# Flask Routes for Vercel deployment
 # ------------------------------------------------------------------------------
-try:
-    from flask import Flask, request as flask_req
-
-    app = Flask(__name__)
-
-    @app.route("/", defaults={"path": ""}, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
-    @app.route("/<path:path>", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
-    def vercel_entrypoint(path=""):
-        return cloudport_registration(flask_req)
-
-    # Vercel looks for a top-level variable named 'app', 'application', or 'handler'
-    application = app
-    handler = app
-
-except ImportError:
-    # If Flask is not installed directly, assign handler as function
-    app = cloudport_registration
-    application = cloudport_registration
-    handler = cloudport_registration
+@app.route("/", defaults={"path": ""}, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+@app.route("/<path:path>", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+def handler(path=""):
+    return cloudport_registration(request)
