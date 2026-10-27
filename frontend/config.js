@@ -18,7 +18,7 @@ window.CLOUDPORT_CONFIG = {
   // In production, update this with your deployed Google Cloud Function HTTPS endpoint
   API_URL: isLocalHost
     ? (window.location.origin && window.location.origin.startsWith('http') ? window.location.origin : 'http://localhost:8080')
-    : 'https://us-central1-YOUR_GCP_PROJECT_ID.cloudfunctions.net/cloudportRegistration',
+    : 'https://cloud-port-hsla-eta.vercel.app',
   
   // Timeout in milliseconds for registration requests
   REQUEST_TIMEOUT_MS: 15000,
