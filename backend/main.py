@@ -4,6 +4,7 @@ HTTP Triggered Serverless Function with Cloud Firestore Native Integration
 
 Target: cloudport_registration
 Runtime: Python 3.10 / 3.11 / 3.12
+Supports: Google Cloud Functions, Local Development, and Vercel Serverless
 
 Organized by Google Developer Groups On Campus BPPIMT
 """
@@ -12,24 +13,98 @@ import os
 import re
 import json
 import logging
+import uuid
+import time
 from typing import Dict, Any, Tuple, List
-import functions_framework
-from google.cloud import firestore
+try:
+    import functions_framework
+except ImportError:
+    class _FFStub:
+        @staticmethod
+        def http(f):
+            return f
+    functions_framework = _FFStub()
+
+try:
+    from google.cloud import firestore
+except ImportError:
+    firestore = None
 
 # Configure standard logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("cloudport-backend")
 
+# In-memory storage for offline / local / Vercel fallback without GCP credentials
+_local_store: Dict[str, Dict[str, Any]] = {}
+
+class LocalCollectionStub:
+    def __init__(self, name: str):
+        self.name = name
+
+    def where(self, field: str, op: str, val: Any):
+        class LocalQueryStub:
+            def __init__(self, f: str, o: str, v: Any):
+                self.f = f
+                self.o = o
+                self.v = v
+
+            def limit(self, num: int):
+                class LocalLimitStub:
+                    def __init__(self, parent_query, n: int):
+                        self.pq = parent_query
+                        self.n = n
+
+                    def stream(self):
+                        matches = []
+                        for d_id, doc in _local_store.items():
+                            if doc.get(self.pq.f) == self.pq.v:
+                                class DocSnapshot:
+                                    def __init__(self, doc_id, doc_data):
+                                        self.id = doc_id
+                                        self._data = doc_data
+                                    def to_dict(self):
+                                        return self._data
+                                matches.append(DocSnapshot(d_id, doc))
+                                if len(matches) >= self.n:
+                                    break
+                        return iter(matches)
+                return LocalLimitStub(self, num)
+        return LocalQueryStub(field, op, val)
+
+    def add(self, data: Dict[str, Any]):
+        doc_id = f"doc-{uuid.uuid4().hex[:8]}"
+        _local_store[doc_id] = {**data, "createdAt": time.strftime("%Y-%m-%dT%H:%M:%SZ")}
+        class DocRefStub:
+            def __init__(self, d_id: str):
+                self.id = d_id
+        return time.time(), DocRefStub(doc_id)
+
+class LocalFirestoreStub:
+    def collection(self, name: str):
+        return LocalCollectionStub(name)
+
 # Lazy-loaded Firestore client using Application Default Credentials (ADC)
 _firestore_client = None
 
-def get_firestore_client() -> firestore.Client:
-    """Retrieve or initialize the Firestore Client."""
+def get_firestore_client():
+    """Retrieve or initialize the Firestore Client with fallback stub."""
     global _firestore_client
     if _firestore_client is None:
-        project_id = os.environ.get("GCP_PROJECT_ID") or None
+        project_id = os.environ.get("GCP_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
         database_id = os.environ.get("FIRESTORE_DATABASE_ID", "(default)")
-        _firestore_client = firestore.Client(project=project_id, database=database_id)
+        is_cloud_env = os.environ.get("K_SERVICE") or os.environ.get("GAE_SERVICE")
+
+        if not is_cloud_env and not os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") and not project_id:
+            _firestore_client = LocalFirestoreStub()
+            return _firestore_client
+
+        try:
+            if firestore:
+                _firestore_client = firestore.Client(project=project_id, database=database_id)
+            else:
+                _firestore_client = LocalFirestoreStub()
+        except Exception:
+            _firestore_client = LocalFirestoreStub()
     return _firestore_client
 
 def get_cors_headers() -> Dict[str, str]:
@@ -37,7 +112,7 @@ def get_cors_headers() -> Dict[str, str]:
     allowed_origin = os.environ.get("ALLOWED_ORIGIN", "*")
     return {
         "Access-Control-Allow-Origin": allowed_origin,
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, Accept",
         "Access-Control-Max-Age": "3600"
     }
@@ -94,6 +169,15 @@ def cloudport_registration(request):
     # 1. Handle OPTIONS Preflight
     if request.method == "OPTIONS":
         return ("", 204, cors_headers)
+
+    # Health check for GET
+    if request.method == "GET":
+        response_body = json.dumps({
+            "success": True,
+            "message": "CloudPort Registration API is running. Submit POST requests to register."
+        })
+        headers = {**cors_headers, "Content-Type": "application/json"}
+        return (response_body, 200, headers)
 
     # 2. Reject Non-POST Methods (HTTP 405)
     if request.method != "POST":
@@ -160,7 +244,7 @@ def cloudport_registration(request):
             "email": clean_email,
             "department": clean_dept,
             "interest": clean_interest,
-            "createdAt": firestore.SERVER_TIMESTAMP
+            "createdAt": firestore.SERVER_TIMESTAMP if firestore and hasattr(firestore, "SERVER_TIMESTAMP") else time.strftime("%Y-%m-%dT%H:%M:%SZ")
         }
 
         update_time, doc_ref = registrations_ref.add(doc_data)
@@ -174,7 +258,8 @@ def cloudport_registration(request):
                 "name": clean_name,
                 "email": clean_email,
                 "department": clean_dept,
-                "interest": clean_interest
+                "interest": clean_interest,
+                "createdAt": time.strftime("%Y-%m-%dT%H:%M:%SZ")
             }
         })
         headers = {**cors_headers, "Content-Type": "application/json"}
@@ -190,3 +275,27 @@ def cloudport_registration(request):
         })
         headers = {**cors_headers, "Content-Type": "application/json"}
         return (response_body, 500, headers)
+
+
+# ------------------------------------------------------------------------------
+# Vercel Serverless WSGI Entry Point (exports 'app', 'application', and 'handler')
+# ------------------------------------------------------------------------------
+try:
+    from flask import Flask, request as flask_req
+
+    app = Flask(__name__)
+
+    @app.route("/", defaults={"path": ""}, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+    @app.route("/<path:path>", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+    def vercel_entrypoint(path=""):
+        return cloudport_registration(flask_req)
+
+    # Vercel looks for a top-level variable named 'app', 'application', or 'handler'
+    application = app
+    handler = app
+
+except ImportError:
+    # If Flask is not installed directly, assign handler as function
+    app = cloudport_registration
+    application = cloudport_registration
+    handler = cloudport_registration
