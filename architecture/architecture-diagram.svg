@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" width="1100" height="680" style="background:#090d16; font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#05080f"/>
+    </linearGradient>
+
+    <linearGradient id="gcpBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="100%" stop-color="#1A73E8"/>
+    </linearGradient>
+
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#161f33"/>
+      <stop offset="100%" stop-color="#0e1526"/>
+    </linearGradient>
+
+    <!-- Filters & Shadows -->
+    <filter id="boxShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+
+    <filter id="blueGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#4285F4" flood-opacity="0.4"/>
+    </filter>
+
+    <!-- Arrow Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#60A5FA"/>
+    </marker>
+
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34D399"/>
+    </marker>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1100" height="680" fill="url(#bgGlow)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.02" stroke-width="1">
+    <line x1="0" y1="80" x2="1100" y2="80"/>
+    <line x1="0" y1="160" x2="1100" y2="160"/>
+    <line x1="0" y1="240" x2="1100" y2="240"/>
+    <line x1="0" y1="320" x2="1100" y2="320"/>
+    <line x1="0" y1="400" x2="1100" y2="400"/>
+    <line x1="0" y1="480" x2="1100" y2="480"/>
+    <line x1="0" y1="560" x2="1100" y2="560"/>
+  </g>
+
+  <!-- Header Banner -->
+  <g id="header">
+    <text x="50" y="50" font-size="22" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">
+      CloudPort — Serverless Architecture on Google Cloud Platform
+    </text>
+    <text x="50" y="72" font-size="13" font-weight="500" fill="#94A3B8">
+      GDG On Campus BPPIMT • Production-Grade Serverless Web Application &amp; Firestore Integration
+    </text>
+    <rect x="940" y="32" width="110" height="28" rx="14" fill="#1E293B" stroke="#334155"/>
+    <text x="995" y="50" font-size="11" font-weight="700" fill="#34D399" text-anchor="middle">ACTIVE GCP</text>
+  </g>
+
+  <!-- Google Cloud Project Container (Boundary) -->
+  <g id="gcpBoundary">
+    <rect x="360" y="105" width="690" height="535" rx="16" fill="#0d1424" stroke="#1E293B" stroke-dasharray="6,6" stroke-width="1.5"/>
+    <rect x="380" y="93" width="220" height="26" rx="6" fill="#1E293B" stroke="#334155"/>
+    <text x="490" y="110" font-size="11" font-weight="700" fill="#60A5FA" text-anchor="middle">
+      GOOGLE CLOUD PROJECT BOUNDARY
+    </text>
+  </g>
+
+  <!-- 1. Client Browser (Tier 1) -->
+  <g id="clientBrowser" transform="translate(50, 200)" filter="url(#boxShadow)">
+    <rect width="260" height="230" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5"/>
+    
+    <!-- Title Bar -->
+    <rect width="260" height="42" rx="12" fill="#1E293B"/>
+    <circle cx="20" cy="21" r="5" fill="#EF4444"/>
+    <circle cx="36" cy="21" r="5" fill="#F59E0B"/>
+    <circle cx="52" cy="21" r="5" fill="#10B981"/>
+    <text x="145" y="26" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Visitor / Client Browser</text>
+    
+    <!-- Content inside Client Box -->
+    <text x="25" y="75" font-size="13" font-weight="700" fill="#38BDF8">CloudPort Web Client</text>
+    <text x="25" y="95" font-size="11" fill="#94A3B8">• Semantic HTML5 &amp; CSS3</text>
+    <text x="25" y="113" font-size="11" fill="#94A3B8">• Vanilla JavaScript (No Framework)</text>
+    <text x="25" y="131" font-size="11" fill="#94A3B8">• Client-Side Input Validation</text>
+    <text x="25" y="149" font-size="11" fill="#94A3B8">• Responsive (Mobile/Desktop)</text>
+    <text x="25" y="167" font-size="11" fill="#94A3B8">• fetch() with Timeout Handling</text>
+    
+    <rect x="25" y="185" width="210" height="28" rx="6" fill="rgba(66, 133, 244, 0.15)" stroke="#4285F4"/>
+    <text x="130" y="203" font-size="11" font-weight="700" fill="#60A5FA" text-anchor="middle">Zero Cloud Secrets in Client</text>
+  </g>
+
+  <!-- 2. Static Web Hosting: Cloud Storage or Cloud Run -->
+  <g id="cloudStorage" transform="translate(400, 145)" filter="url(#boxShadow)">
+    <rect width="280" height="135" rx="12" fill="url(#cardGrad)" stroke="#2563EB" stroke-width="1.5"/>
+    <rect width="280" height="36" rx="12" fill="rgba(66, 133, 244, 0.25)"/>
+    <text x="20" y="23" font-size="13" font-weight="700" fill="#93C5FD">Google Cloud Storage (GCS)</text>
+    <text x="20" y="62" font-size="11" font-weight="600" fill="#E2E8F0">Static Website Hosting (Option A)</text>
+    <text x="20" y="80" font-size="11" fill="#94A3B8">• Bucket: gs://cloudport-website</text>
+    <text x="20" y="98" font-size="11" fill="#94A3B8">• Index: index.html | Style: style.css</text>
+    <text x="20" y="116" font-size="11" fill="#94A3B8">• Public-read access via IAM (allUsers)</text>
+  </g>
+
+  <!-- 3. Serverless Backend: Cloud Function -->
+  <g id="cloudFunction" transform="translate(400, 335)" filter="url(#boxShadow)">
+    <rect width="280" height="260" rx="12" fill="url(#cardGrad)" stroke="#8B5CF6" stroke-width="2"/>
+    <rect width="280" height="38" rx="12" fill="rgba(139, 92, 246, 0.3)"/>
+    <text x="20" y="24" font-size="13" font-weight="700" fill="#DDD6FE">Google Cloud Function (Gen 2)</text>
+    
+    <text x="20" y="65" font-size="11" font-weight="700" fill="#A78BFA">HTTP Trigger Handler</text>
+    <text x="20" y="83" font-size="11" fill="#CBD5E1">• Runtime: Node.js 20 or Python 3.11</text>
+    <text x="20" y="101" font-size="11" fill="#CBD5E1">• Entry Point: cloudportRegistration</text>
+    <text x="20" y="119" font-size="11" fill="#CBD5E1">• Preflight CORS (OPTIONS -> 204)</text>
+    <text x="20" y="137" font-size="11" fill="#CBD5E1">• Server-side RFC 5322 Email Check</text>
+    <text x="20" y="155" font-size="11" fill="#CBD5E1">• Duplicate attendee rejection</text>
+    <text x="20" y="173" font-size="11" fill="#CBD5E1">• Sanitized error responses (500/400)</text>
+
+    <!-- Attached Service Account Pill -->
+    <rect x="15" y="195" width="250" height="48" rx="6" fill="#1E1B4B" stroke="#4C1D95"/>
+    <text x="25" y="213" font-size="10" font-weight="700" fill="#C4B5FD">ATTACHED SERVICE ACCOUNT (ADC)</text>
+    <text x="25" y="231" font-size="9.5" font-family="'JetBrains Mono', monospace" fill="#93C5FD">cloudport-sa@gcp-proj.iam</text>
+  </g>
+
+  <!-- 4. Database: Cloud Firestore Native -->
+  <g id="cloudFirestore" transform="translate(760, 200)" filter="url(#boxShadow)">
+    <rect width="260" height="235" rx="12" fill="url(#cardGrad)" stroke="#F59E0B" stroke-width="2"/>
+    <rect width="260" height="38" rx="12" fill="rgba(245, 158, 11, 0.25)"/>
+    <text x="20" y="24" font-size="13" font-weight="700" fill="#FDE68A">Google Cloud Firestore</text>
+
+    <text x="20" y="65" font-size="11" font-weight="700" fill="#FBBF24">Firestore Native Mode (NoSQL)</text>
+    <text x="20" y="85" font-size="11" fill="#E2E8F0">• Collection: "registrations"</text>
+    <text x="20" y="103" font-size="10.5" fill="#94A3B8">  - name (string)</text>
+    <text x="20" y="121" font-size="10.5" fill="#94A3B8">  - email (string, lowercase)</text>
+    <text x="20" y="139" font-size="10.5" fill="#94A3B8">  - department (string)</text>
+    <text x="20" y="157" font-size="10.5" fill="#94A3B8">  - interest (string)</text>
+    <text x="20" y="175" font-size="10.5" fill="#94A3B8">  - createdAt (server timestamp)</text>
+
+    <rect x="20" y="193" width="220" height="26" rx="4" fill="#3B2606" stroke="#92400E"/>
+    <text x="130" y="210" font-size="10" font-weight="700" fill="#FBBF24" text-anchor="middle">Role: roles/datastore.user</text>
+  </g>
+
+  <!-- 5. Cloud Observability: Cloud Logging & Monitoring -->
+  <g id="cloudLogging" transform="translate(760, 480)" filter="url(#boxShadow)">
+    <rect width="260" height="115" rx="12" fill="url(#cardGrad)" stroke="#10B981" stroke-width="1.5"/>
+    <rect width="260" height="32" rx="12" fill="rgba(16, 185, 129, 0.2)"/>
+    <text x="20" y="21" font-size="12" font-weight="700" fill="#A7F3D0">Cloud Logging &amp; Monitoring</text>
+    <text x="20" y="55" font-size="10.5" fill="#94A3B8">• Real-time invocation execution logs</text>
+    <text x="20" y="73" font-size="10.5" fill="#94A3B8">• Latency, error rates &amp; memory metrics</text>
+    <text x="20" y="91" font-size="10.5" fill="#94A3B8">• Automatic structured audit trail</text>
+  </g>
+
+  <!-- Connectors & Data Flow Arrows -->
+  
+  <!-- Flow 1: Client to GCS (GET HTML/CSS/JS) -->
+  <path d="M 180 200 L 180 180 L 392 180" fill="none" stroke="#60A5FA" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="220" y="162" width="130" height="20" rx="4" fill="#0B1120" stroke="#334155"/>
+  <text x="285" y="176" font-size="10" font-weight="600" fill="#93C5FD" text-anchor="middle">1. HTTPS GET (Static Assets)</text>
+
+  <!-- Flow 2: Client to Cloud Function (POST Registration) -->
+  <path d="M 312 370 L 392 370" fill="none" stroke="#60A5FA" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="305" y="340" width="100" height="22" rx="4" fill="#0B1120" stroke="#3B82F6"/>
+  <text x="355" y="355" font-size="10" font-weight="700" fill="#60A5FA" text-anchor="middle">2. HTTPS POST</text>
+
+  <!-- Flow 3: Cloud Function to Firestore (Persist with IAM) -->
+  <path d="M 682 370 L 752 370" fill="none" stroke="#F59E0B" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <rect x="682" y="340" width="90" height="22" rx="4" fill="#0B1120" stroke="#D97706"/>
+  <text x="727" y="355" font-size="10" font-weight="700" fill="#FBBF24" text-anchor="middle">3. ADC Write</text>
+
+  <!-- Flow 4: Cloud Function to Cloud Logging -->
+  <path d="M 682 530 L 752 530" fill="none" stroke="#10B981" stroke-width="1.8" stroke-dasharray="4,4" marker-end="url(#arrowGreen)"/>
+  <text x="717" y="522" font-size="9.5" font-weight="600" fill="#34D399" text-anchor="middle">Telemetry</text>
+
+  <!-- Flow 5: Cloud Function to Client (JSON Response) -->
+  <path d="M 392 410 L 312 410" fill="none" stroke="#34D399" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <rect x="290" y="420" width="130" height="20" rx="4" fill="#0B1120" stroke="#059669"/>
+  <text x="355" y="434" font-size="9.5" font-weight="700" fill="#34D399" text-anchor="middle">4. JSON Response (201/400)</text>
+
+  <!-- Legend Bar at bottom -->
+  <g id="footerLegend" transform="translate(50, 642)">
+    <circle cx="10" cy="10" r="5" fill="#4285F4"/>
+    <text x="22" y="14" font-size="11" fill="#94A3B8">Static Frontend</text>
+
+    <circle cx="140" cy="10" r="5" fill="#8B5CF6"/>
+    <text x="152" y="14" font-size="11" fill="#94A3B8">Serverless Compute</text>
+
+    <circle cx="295" cy="10" r="5" fill="#F59E0B"/>
+    <text x="307" y="14" font-size="11" fill="#94A3B8">Firestore Native DB</text>
+
+    <circle cx="455" cy="10" r="5" fill="#10B981"/>
+    <text x="467" y="14" font-size="11" fill="#94A3B8">IAM Least Privilege &amp; Logging</text>
+
+    <text x="1000" y="14" font-size="11" font-weight="600" fill="#64748B" text-anchor="end">
+      Google Developer Groups On Campus BPPIMT
+    </text>
+  </g>
+</svg>

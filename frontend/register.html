@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="CloudPort — Attendee Registration Portal for Google Cloud Platform Workshop organized by GDG On Campus BPPIMT." />
+  <meta name="theme-color" content="#0b0f19" />
+  <title>Register for CloudPort — GDG BPPIMT Cloud Workshop</title>
+  
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+  <div class="ambient-glow glow-purple" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="/" class="nav-brand" aria-label="CloudPort Home">
+        <div class="logo-symbol" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+            <path d="M28.5 16.5C27.8 11.8 23.8 8.2 19 8.2C15.2 8.2 11.9 10.6 10.5 14.1C6.8 14.6 4 17.8 4 21.6C4 25.8 7.4 29.2 11.6 29.2H28C31.3 29.2 34 26.5 34 23.2C34 20.1 31.5 17.5 28.5 16.5Z" fill="url(#gcpCloudGradientReg)"/>
+            <circle cx="15" cy="21" r="2.5" fill="#4285F4"/>
+            <circle cx="21" cy="21" r="2.5" fill="#EA4335"/>
+            <circle cx="27" cy="21" r="2.5" fill="#34A853"/>
+            <defs>
+              <linearGradient id="gcpCloudGradientReg" x1="4" y1="8.2" x2="34" y2="29.2" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4285F4"/>
+                <stop offset="0.5" stop-color="#673AB7"/>
+                <stop offset="1" stop-color="#9C27B0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Cloud<span class="highlight">Port</span></span>
+          <span class="brand-sub">GDG BPPIMT</span>
+        </div>
+      </a>
+
+      <!-- Navigation Actions -->
+      <nav class="nav-links" id="navLinks" aria-label="Registration Navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/#about" class="nav-link">About</a>
+        <a href="/#events" class="nav-link">Event Details</a>
+        <a href="/#benefits" class="nav-link">Benefits</a>
+        <a href="/" class="btn btn-outline nav-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Overview</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Registration Portal -->
+  <main class="register-page-wrapper">
+    <div class="container">
+      <!-- Breadcrumb / Back Link -->
+      <a href="/" class="back-link-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to Main Page</span>
+      </a>
+
+      <!-- Page Header -->
+      <div class="register-page-header">
+        <div class="hero-badge" style="margin-bottom: 1rem; display: inline-flex;">
+          <span class="badge-dot"></span>
+          <span>Google Developer Groups On Campus • BPPIMT</span>
+        </div>
+        <h1 class="hero-title" style="font-size: 2.5rem; margin-bottom: 0.75rem;">
+          Attendee <span class="gradient-text">Registration Portal</span>
+        </h1>
+        <p class="hero-subtitle" style="max-width: 650px; margin: 0 0 1.75rem 0; text-align: left;">
+          Secure your seat for <strong>CloudPort 2026</strong>.
+        </p>
+      </div>
+
+      <!-- Registration Form & Event Details 2-Column Layout -->
+      <div class="register-layout">
+        <!-- Form Column (Matching Reference Image 3 Design with Google Accent Bar) -->
+        <div class="form-wrapper">
+          <div class="form-card">
+            <!-- Google 4-Color Accent Top Bar -->
+            <div class="google-accent-bar" aria-hidden="true"></div>
+
+            <div class="form-card-header">
+              <h3 class="form-title">Delegate Registration Form</h3>
+              <p class="form-subtitle">Please enter your accurate details for event pass generation and certificate issuance.</p>
+            </div>
+
+            <!-- Dynamic Notification / Alert Area -->
+            <div class="form-alert" id="formAlert" role="alert" aria-live="polite" style="display: none;">
+              <div class="alert-icon" id="alertIcon"></div>
+              <div class="alert-content">
+                <h4 class="alert-title" id="alertTitle">Title</h4>
+                <p class="alert-message" id="alertMessage">Message</p>
+                <div class="alert-meta" id="alertMeta"></div>
+              </div>
+              <button type="button" class="alert-close" id="alertCloseBtn" aria-label="Close notification">&times;</button>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" class="registration-form" novalidate>
+              <!-- Full Name Field -->
+              <div class="form-group" id="groupName">
+                <label for="fullName" class="form-label">
+                  Full Name <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="name"
+                    class="form-input"
+                    placeholder="e.g. Alex Johnson"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    autocomplete="name"
+                  />
+                </div>
+                <span class="field-error" id="errorName">Please enter your full name (minimum 2 characters).</span>
+              </div>
+
+              <!-- Email Address Field -->
+              <div class="form-group" id="groupEmail">
+                <label for="email" class="form-label">
+                  Email Address <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    placeholder="e.g. alex.johnson@example.com"
+                    required
+                    maxlength="120"
+                    autocomplete="email"
+                  />
+                </div>
+                <span class="field-error" id="errorEmail">Please enter a valid email address (e.g. user@domain.com).</span>
+              </div>
+
+              <!-- Department Field -->
+              <div class="form-group" id="groupDepartment">
+                <label for="department" class="form-label">
+                  Department / Major <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper select-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <select id="department" name="department" class="form-input form-select" required>
+                    <option value="" disabled selected>Select your department</option>
+                    <option value="Computer Science & Engineering">Computer Science & Engineering (CSE)</option>
+                    <option value="Information Technology">Information Technology (IT)</option>
+                    <option value="Electronics & Communication">Electronics & Communication (ECE)</option>
+                    <option value="Electrical Engineering">Electrical Engineering (EE)</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering (ME)</option>
+                    <option value="Civil Engineering">Civil Engineering (CE)</option>
+                    <option value="Master of Computer Applications">Master of Computer Applications (MCA)</option>
+                    <option value="Other Engineering / Science">Other Engineering / Science</option>
+                  </select>
+                </div>
+                <span class="field-error" id="errorDepartment">Please select your academic department.</span>
+              </div>
+
+              <!-- Area of Interest Field -->
+              <div class="form-group" id="groupInterest">
+                <label for="interest" class="form-label">
+                  Primary Area of Interest <span class="required-asterisk">*</span>
+                </label>
+                <div class="input-wrapper select-wrapper">
+                  <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <select id="interest" name="interest" class="form-input form-select" required>
+                    <option value="" disabled selected>Select your cloud interest</option>
+                    <option value="Serverless & Cloud Functions">Serverless & Cloud Functions</option>
+                    <option value="Cloud Security & IAM Best Practices">Cloud Security & IAM Best Practices</option>
+                    <option value="NoSQL Data Modeling with Firestore">NoSQL Data Modeling with Firestore</option>
+                    <option value="Containers, Docker & Cloud Run">Containers, Docker & Cloud Run</option>
+                    <option value="DevOps & Terraform Infrastructure as Code">DevOps & Terraform Infrastructure as Code</option>
+                    <option value="Cloud-Native Full-Stack Architecture">Cloud-Native Full-Stack Architecture</option>
+                  </select>
+                </div>
+                <span class="field-error" id="errorInterest">Please select your primary cloud interest.</span>
+              </div>
+
+              <!-- Terms / Privacy Notice -->
+              <div class="form-disclaimer">
+                <p>
+                  By submitting this form, you acknowledge that your registration data will be saved securely to Google Cloud Firestore via an authenticated Cloud Function. No spam, ever.
+                </p>
+              </div>
+
+              <!-- Submit Button with Spinner & Status States -->
+              <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
+                <span class="btn-spinner" id="btnSpinner" aria-hidden="true"></span>
+                <span class="btn-text" id="btnText">Complete Registration</span>
+                <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Reset / Register Another Button (Shown after success) -->
+            <div id="registerAnotherWrapper" class="register-another-wrapper" style="display: none;">
+              <button type="button" id="registerAnotherBtn" class="btn btn-outline btn-block">
+                <span>Register Another Attendee</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Column: Event Details & Benefits Overview -->
+        <div class="register-sidebar">
+          <!-- Event Quick Facts Card -->
+          <div class="form-card" style="margin-bottom: 2rem;">
+            <div class="form-card-header">
+              <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Event Details</span>
+              <h3 class="form-title" style="font-size: 1.3rem;">Event Schedule</h3>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div class="detail-icon icon-blue" style="width: 40px; height: 40px; min-width: 40px; border-radius: 8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">DATE</div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-white);">Saturday, Nov 14, 2026</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div class="detail-icon icon-purple" style="width: 40px; height: 40px; min-width: 40px; border-radius: 8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">TIME</div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-white);">10:00 AM – 5:00 PM IST</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div class="detail-icon icon-yellow" style="width: 40px; height: 40px; min-width: 40px; border-radius: 8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">VENUE</div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-white);">Main Auditorium, BPPIMT</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div class="detail-icon icon-green" style="width: 40px; height: 40px; min-width: 40px; border-radius: 8px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">FORMAT</div>
+                  <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-white);">In-Person & Hands-on</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delegate Benefits Summary Card -->
+          <div class="form-card" style="margin-bottom: 2rem;">
+            <div class="form-card-header">
+              <span class="section-tag" style="margin-bottom: 0.5rem; display: inline-block;">Included Perks</span>
+              <h3 class="form-title" style="font-size: 1.3rem;">Delegate Benefits</h3>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                <span style="font-size: 1.3rem;">🎓</span>
+                <div>
+                  <div style="font-weight: 700; color: var(--text-white); font-size: 0.92rem;">Official Certificate</div>
+                  <div style="font-size: 0.82rem; color: var(--text-secondary);">Verified digital certificate recognized across campus and LinkedIn.</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                <span style="font-size: 1.3rem;">👕</span>
+                <div>
+                  <div style="font-weight: 700; color: var(--text-white); font-size: 0.92rem;">GDG Swag & Badges</div>
+                  <div style="font-size: 0.82rem; color: var(--text-secondary);">Exclusive GDG Cloud t-shirts, stickers & Skill Boost credits.</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                <span style="font-size: 1.3rem;">🍱</span>
+                <div>
+                  <div style="font-weight: 700; color: var(--text-white); font-size: 0.92rem;">Lunch & Refreshments</div>
+                  <div style="font-size: 0.82rem; color: var(--text-secondary);">Complimentary buffet lunch and high-tea refreshments.</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                <span style="font-size: 1.3rem;">🚀</span>
+                <div>
+                  <div style="font-weight: 700; color: var(--text-white); font-size: 0.92rem;">Direct Mentorship</div>
+                  <div style="font-size: 0.82rem; color: var(--text-secondary);">1-on-1 interaction with Google Cloud certified architects.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-col brand-col">
+          <div class="footer-logo">
+            <span class="brand-name">Cloud<span class="highlight">Port</span></span>
+          </div>
+          <p class="footer-desc">
+            Organized by the Google Developer Groups (GDG) On Campus BPPIMT Cloud Team. Empowering developers to build reliable, scalable serverless solutions on Google Cloud Platform.
+          </p>
+          <div class="footer-badge">
+            <span class="badge-dot"></span>
+            <span>Google Developer Groups On Campus</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#events">Event Details</a></li>
+            <li><a href="/#benefits">Benefits</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Cloud Technologies</h4>
+          <ul class="footer-links">
+            <li><a href="https://cloud.google.com/storage" target="_blank" rel="noopener noreferrer">Google Cloud Storage</a></li>
+            <li><a href="https://cloud.google.com/functions" target="_blank" rel="noopener noreferrer">Cloud Functions (Gen 2)</a></li>
+            <li><a href="https://cloud.google.com/firestore" target="_blank" rel="noopener noreferrer">Cloud Firestore Native</a></li>
+            <li><a href="https://cloud.google.com/run" target="_blank" rel="noopener noreferrer">Google Cloud Run</a></li>
+            <li><a href="https://cloud.google.com/iam" target="_blank" rel="noopener noreferrer">Cloud IAM Security</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Community & Help</h4>
+          <p class="footer-contact">B.P. Poddar Institute of Management and Technology</p>
+          <p class="footer-contact">137, V.I.P. Road, Poddar Vihar, Kolkata, West Bengal 700052</p>
+          <div class="footer-socials">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2026 CloudPort • Google Developer Groups On Campus BPPIMT. Built for Cloud Team Selection Task.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="CloudPort — Serverless Web App & Google Cloud Platform Workshop Registration Portal organized by GDG On Campus BPPIMT." />
+  <meta name="theme-color" content="#0b0f19" />
+  <title>CloudPort — GDG BPPIMT Cloud Workshop Registration</title>
+  
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+  <div class="ambient-glow glow-purple" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="nav-brand" aria-label="CloudPort Home">
+        <div class="logo-symbol" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+            <!-- Cloud Icon with GCP accent dots -->
+            <path d="M28.5 16.5C27.8 11.8 23.8 8.2 19 8.2C15.2 8.2 11.9 10.6 10.5 14.1C6.8 14.6 4 17.8 4 21.6C4 25.8 7.4 29.2 11.6 29.2H28C31.3 29.2 34 26.5 34 23.2C34 20.1 31.5 17.5 28.5 16.5Z" fill="url(#gcpCloudGradient)"/>
+            <circle cx="15" cy="21" r="2.5" fill="#4285F4"/>
+            <circle cx="21" cy="21" r="2.5" fill="#EA4335"/>
+            <circle cx="27" cy="21" r="2.5" fill="#34A853"/>
+            <defs>
+              <linearGradient id="gcpCloudGradient" x1="4" y1="8.2" x2="34" y2="29.2" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4285F4"/>
+                <stop offset="0.5" stop-color="#673AB7"/>
+                <stop offset="1" stop-color="#9C27B0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Cloud<span class="highlight">Port</span></span>
+          <span class="brand-sub">GDG BPPIMT</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>Google Developer Groups On Campus • BPPIMT</span>
+          </div>
+
+          <h1 class="hero-title">
+            Architect, Deploy & Scale on <span class="gradient-text">Google Cloud</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Welcome to <strong>CloudPort</strong> — the flagship cloud computing initiative and serverless engineering masterclass. Dive into Google Cloud Storage, Cloud Functions, and Firestore with end-to-end hands-on training.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/register" class="btn btn-primary btn-glow">
+              <span>Secure Your Seat</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#events" class="btn btn-secondary">
+              <span>Explore Curriculum</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics Banner -->
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-value">100%</span>
+              <span class="metric-label">Serverless & Hands-On</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-value">3</span>
+              <span class="metric-label">Intensive Tech Modules</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-value">GCP</span>
+              <span class="metric-label">Tier-1 Cloud Architecture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Highlights & Live Countdown Section (From Reference Image 2) -->
+    <section class="event-bar-section" id="event-bar">
+      <div class="container">
+        <!-- Navigation Tabs Bar (Above Date, Time, Venue) -->
+        <div class="event-nav-tabs-wrapper">
+          <nav class="event-nav-tabs" id="navLinks" aria-label="Primary Navigation">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#events" class="nav-link">Event Details</a>
+            <a href="#benefits" class="nav-link">Benefits</a>
+          </nav>
+        </div>
+
+        <!-- 4 Logistics Cards -->
+        <div class="event-details-grid">
+          <!-- Card 1: Date -->
+          <div class="event-detail-card">
+            <div class="detail-icon icon-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">DATE</span>
+              <span class="detail-value">Saturday, Nov 14, 2026</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Time -->
+          <div class="event-detail-card">
+            <div class="detail-icon icon-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">TIME</span>
+              <span class="detail-value">10:00 AM – 5:00 PM IST</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Venue -->
+          <div class="event-detail-card">
+            <div class="detail-icon icon-yellow">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">VENUE</span>
+              <span class="detail-value">Main Auditorium, BPPIMT</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Format -->
+          <div class="event-detail-card">
+            <div class="detail-icon icon-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="detail-content">
+              <span class="detail-label">FORMAT</span>
+              <span class="detail-value">In-Person & Hands-on</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Countdown Box (Live JavaScript Timer) -->
+        <div class="countdown-card">
+          <span class="countdown-title">Event Countdown:</span>
+          <div class="countdown-timer" id="countdownTimer">
+            <div class="countdown-segment">
+              <span class="count-num" id="cdDays">17</span>
+              <span class="count-label">DAYS</span>
+            </div>
+            <span class="count-colon">:</span>
+            <div class="countdown-segment">
+              <span class="count-num" id="cdHours">13</span>
+              <span class="count-label">HOURS</span>
+            </div>
+            <span class="count-colon">:</span>
+            <div class="countdown-segment">
+              <span class="count-num" id="cdMins">00</span>
+              <span class="count-label">MINS</span>
+            </div>
+            <span class="count-colon">:</span>
+            <div class="countdown-segment">
+              <span class="count-num" id="cdSecs">04</span>
+              <span class="count-label">SECS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons (From Reference Image 2) -->
+        <div class="event-bar-actions">
+          <a href="/register" class="btn btn-primary btn-glow">
+            <span>Register Now — Free</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#events" class="btn btn-secondary">
+            <span>View Full Agenda</span>
+          </a>
+        </div>
+
+        <!-- Google 4-Color Accent Dots -->
+        <div class="google-dots-row">
+          <span class="g-dot g-blue"></span>
+          <span class="g-dot g-red"></span>
+          <span class="g-dot g-yellow"></span>
+          <span class="g-dot g-green"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About The Event</span>
+          <h2 class="section-title">Where Campus Developers Meet The Google Cloud</h2>
+          <p class="section-description">
+            CloudPort is engineered by the Google Developer Groups On Campus BPPIMT Cloud Team to bridge theoretical concepts with enterprise-grade cloud development.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Serverless Computing</h3>
+            <p class="feature-text">
+              Build event-driven microservices with Google Cloud Functions. Learn zero-infrastructure serverless patterns, automatic horizontal scaling, and HTTP triggers.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon icon-purple">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Cloud Firestore Native</h3>
+            <p class="feature-text">
+              Store structured, real-time NoSQL documents with Google Cloud Firestore in Native mode. Learn collections, schema design, and server timestamps.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">IAM & Cloud Security</h3>
+            <p class="feature-text">
+              Implement strict Least-Privilege service accounts, Application Default Credentials (ADC), environment segregation, and CORS security.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon icon-red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+            </div>
+            <h3 class="feature-title">Static Web Hosting on GCS</h3>
+            <p class="feature-text">
+              Deploy high-availability frontends on Google Cloud Storage buckets or Google Cloud Run with fine-grained caching, HTTPS, and low latency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workshop Details / Events Section -->
+    <section class="section events-section" id="events">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Event Curriculum & Schedule</span>
+          <h2 class="section-title">What You Will Experience at CloudPort</h2>
+          <p class="section-description">
+            A comprehensive curriculum covering architecture design, live coding, and production deployment on Google Cloud Platform.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Track 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">1</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-tag">Session 01 • Foundation</span>
+                <span class="timeline-time">Day 1</span>
+              </div>
+              <h3 class="timeline-title">Google Cloud Foundations & Firestore Native Modeling</h3>
+              <p class="timeline-desc">
+                Setting up GCP projects, Cloud SDK (gcloud CLI), billing safeguards, and creating Firestore in Native mode with granular IAM roles.
+              </p>
+              <ul class="timeline-list">
+                <li>GCP Resource Hierarchy & Service Accounts</li>
+                <li>Cloud Firestore collections and document modeling</li>
+                <li>Configuring Application Default Credentials (ADC)</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Track 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">2</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-tag">Session 02 • Core Engineering</span>
+                <span class="timeline-time">Day 2</span>
+              </div>
+              <h3 class="timeline-title">Serverless API Development with Google Cloud Functions</h3>
+              <p class="timeline-desc">
+                Building, packaging, and deploying HTTP-triggered Cloud Functions (Gen 2) with input validation, error handling, and Firestore integration.
+              </p>
+              <ul class="timeline-list">
+                <li>Writing HTTP endpoints with Functions Framework (Node.js & Python)</li>
+                <li>Handling CORS preflight (OPTIONS) and method constraints</li>
+                <li>Writing server-side timestamps & validation checks</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Track 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">3</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="timeline-tag">Session 03 • Deployment & DevOps</span>
+                <span class="timeline-time">Day 3</span>
+              </div>
+              <h3 class="timeline-title">Frontend Hosting, Cloud Run & Infrastructure as Code</h3>
+              <p class="timeline-desc">
+                Deploying responsive static web assets to Google Cloud Storage, connecting frontend fetch APIs, and automating with Terraform.
+              </p>
+              <ul class="timeline-list">
+                <li>Public bucket web hosting & Cloud Run alternative</li>
+                <li>Connecting frontend fetch API to the live Cloud Function</li>
+                <li>Automating cloud provisioning with Terraform IaC</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Logistics Cards -->
+        <div class="logistics-grid">
+          <div class="logistic-card">
+            <span class="logistic-label">Organizer</span>
+            <span class="logistic-value">GDG On Campus BPPIMT</span>
+          </div>
+          <div class="logistic-card">
+            <span class="logistic-label">Format</span>
+            <span class="logistic-value">Hybrid (On-Campus + Stream)</span>
+          </div>
+          <div class="logistic-card">
+            <span class="logistic-label">Cost</span>
+            <span class="logistic-value text-green">Free for Students</span>
+          </div>
+          <div class="logistic-card">
+            <span class="logistic-label">Perks</span>
+            <span class="logistic-value">Certificate & Cloud Badges</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delegate Benefits Section (From Reference Image 3) -->
+    <section class="section benefits-section" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Delegate Benefits</span>
+          <h2 class="section-title">What You'll Receive</h2>
+          <p class="section-description">
+            Everything you need to jumpstart your career in cloud engineering and serverless development.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+          <!-- Card 1: Official Certificate -->
+          <div class="benefit-card">
+            <div class="benefit-icon-wrapper" aria-hidden="true">🎓</div>
+            <h3 class="benefit-title">Official Certificate</h3>
+            <p class="benefit-desc">
+              Verified digital certificate of participation recognized across campus and LinkedIn.
+            </p>
+          </div>
+
+          <!-- Card 2: GDG Swag & Badges -->
+          <div class="benefit-card">
+            <div class="benefit-icon-wrapper" aria-hidden="true">👕</div>
+            <h3 class="benefit-title">GDG Swag & Badges</h3>
+            <p class="benefit-desc">
+              Exclusive GDG Cloud t-shirts, laptop stickers, and Google Cloud Skill Boost credits.
+            </p>
+          </div>
+
+          <!-- Card 3: Lunch & Refreshments -->
+          <div class="benefit-card">
+            <div class="benefit-icon-wrapper" aria-hidden="true">🍱</div>
+            <h3 class="benefit-title">Lunch & Refreshments</h3>
+            <p class="benefit-desc">
+              Complimentary catered buffet lunch and high-tea evening refreshments.
+            </p>
+          </div>
+
+          <!-- Card 4: Direct Mentorship -->
+          <div class="benefit-card">
+            <div class="benefit-icon-wrapper" aria-hidden="true">🚀</div>
+            <h3 class="benefit-title">Direct Mentorship</h3>
+            <p class="benefit-desc">
+              1-on-1 interaction with Google Cloud certified architects and GDG community leads.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Claim Your Spot Section -->
+    <section class="section register-section" id="register">
+      <div class="container">
+        <div class="claim-spot-card">
+          <!-- Google 4-Color Accent Top Bar -->
+          <div class="google-accent-bar" aria-hidden="true"></div>
+
+          <span class="section-tag">Claim Your Spot</span>
+          <h2 class="register-heading">Register for GDG on Campus BPPIMT</h2>
+          <p class="register-sub">
+            Please enter your accurate details on the registration portal for event pass generation and certificate issuance. Submissions are processed in real-time by an HTTP-triggered Google Cloud Function and securely persisted in Google Cloud Firestore.
+          </p>
+
+          <div class="info-checklist">
+            <div class="check-item">
+              <div class="check-icon">✓</div>
+              <div class="check-text">Free access to GCP hands-on workshop modules</div>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">✓</div>
+              <div class="check-text">Verified Certificate of Participation from GDG BPPIMT</div>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">✓</div>
+              <div class="check-text">Direct mentorship from Google Cloud certified developers</div>
+            </div>
+            <div class="check-item">
+              <div class="check-icon">✓</div>
+              <div class="check-text">Instant real-time validation & Firestore database confirmation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-col brand-col">
+          <div class="footer-logo">
+            <span class="brand-name">Cloud<span class="highlight">Port</span></span>
+          </div>
+          <p class="footer-desc">
+            Organized by the Google Developer Groups (GDG) On Campus BPPIMT Cloud Team. Empowering developers to build reliable, scalable serverless solutions on Google Cloud Platform.
+          </p>
+          <div class="footer-badge">
+            <span class="badge-dot"></span>
+            <span>Google Developer Groups On Campus</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Workshop</a></li>
+            <li><a href="#events">Event Details</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Cloud Technologies</h4>
+          <ul class="footer-links">
+            <li><a href="https://cloud.google.com/storage" target="_blank" rel="noopener noreferrer">Google Cloud Storage</a></li>
+            <li><a href="https://cloud.google.com/functions" target="_blank" rel="noopener noreferrer">Cloud Functions (Gen 2)</a></li>
+            <li><a href="https://cloud.google.com/firestore" target="_blank" rel="noopener noreferrer">Cloud Firestore Native</a></li>
+            <li><a href="https://cloud.google.com/run" target="_blank" rel="noopener noreferrer">Google Cloud Run</a></li>
+            <li><a href="https://cloud.google.com/iam" target="_blank" rel="noopener noreferrer">Cloud IAM Security</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Community & Help</h4>
+          <p class="footer-contact">B.P. Poddar Institute of Management and Technology</p>
+          <p class="footer-contact">137, V.I.P. Road, Poddar Vihar, Kolkata, West Bengal 700052</p>
+          <div class="footer-socials">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2026 CloudPort • Google Developer Groups On Campus BPPIMT. Built for Cloud Team Selection Task.
+        </p>
+        <p class="disclaimer">
+          Independent student initiative. Google Developer Groups is an independent community; activities and opinions expressed here should not be attributed to Google, the corporation.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

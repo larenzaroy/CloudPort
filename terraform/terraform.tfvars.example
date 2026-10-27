@@ -1,0 +1,7 @@
+# Example Terraform Variables for CloudPort Deployment
+project_id          = "your-gcp-project-id"
+region              = "us-central1"
+environment         = "prod"
+website_bucket_name = "cloudport-website-gdg-bppimt-YOUR_SUFFIX"
+function_name       = "cloudport-registration"
+allowed_origin      = "*" # Or specific origin, e.g. "https://storage.googleapis.com"
